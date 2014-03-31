@@ -19,8 +19,8 @@
     ],
     "dependencies": {
 		"express": "3.5.0",
-		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend",
-		"devoxx-2014-frontend": "https://github.com/ObjetDirect/devoxx-2014-frontend"
+		"devoxx-2014-frontend": "https://github.com/ObjetDirect/devoxx-2014-frontend/tarball/master",
+		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend/tarball/master"
 	},
 	"devDependencies": {
 		"grunt": "~0.4.1",
