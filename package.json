@@ -6,7 +6,7 @@
 	"main": "index.js",
     "scripts": {
 		"start": "grunt server",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "process.env.COVERAGE = true && node index.js; /Users/FDU3285/Development/casperjs/bin/casperjs test --post=./tests/post-test.js ./tests/navigationScenario.js  --xunit=./reports/tests-result.xml && exit 1"
     },
     "contributors": [
         {

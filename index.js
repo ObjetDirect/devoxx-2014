@@ -13,6 +13,22 @@
 
 console.log('Start to initialize our server');
 
+/**
+ * Istanbul code coverage middleware
+ * @type {exports}
+ */
+var isCoverageEnabled = (process.env.COVERAGE == "true"),
+    im = isCoverageEnabled && require('istanbul-middleware');
+
+//before your code is require()-ed, hook the loader for coverage
+if (isCoverageEnabled) {
+    console.log('Hook loader for coverage - ensure this is not production!');
+    im.hookLoader('devoxx-2014-backend');
+    im.hookLoader(__dirname + '/node_modules/devoxx-2014-frontend/target/compiled-webapp');
+    // cover all files except under node_modules
+    // see API for other options
+}
+
 // First, load required modules
 var
     /**
@@ -91,6 +107,13 @@ mongoose.connection.once('open', function callback() {
 		configurator(app);
 		app.use(express.static(__dirname + '/target/webapp'));
 	});
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // add the coverage handler
+    if (isCoverageEnabled) {
+        //enable coverage endpoints under /coverage
+        app.use('/coverage', im.createHandler());
+    }
 
     // -----------------------------------------------------------------------------------------------------------------
 	// REST api definition

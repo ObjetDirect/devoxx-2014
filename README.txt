@@ -4,6 +4,7 @@ What do you need ?
 * Install MongoDB: https://www.mongodb.org/downloads (read http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/)
 * Install Git: https://code.google.com/p/msysgit/ or http://git-scm.com/download/win
 * Install PhantomJs: http://phantomjs.org/
+* Install CasperJs: http://casperjs.readthedocs.org/en/latest/installation.html
 * Install Chrome: http://www.google.fr/intl/fr/chrome/browser/
 * Install SVN: http://subversion.tigris.org/
 
@@ -12,6 +13,7 @@ Next, put into the system PATH:
 * MongoDB bin
 * Git bin
 * SVN bin
+* CasperJS bin
 
 
 --------------------------------------------------------------------------------------------------------------
