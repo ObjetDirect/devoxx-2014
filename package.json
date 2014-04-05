@@ -5,10 +5,7 @@
     "private": true,
 	"main": "index.js",
     "scripts": {
-		"preinstall": "npm install -g grunt grunt-cli",
-		"install": "(cd ./node_modules/devoxx-2014-frontend && npm install)",
-		"postinstall": "grunt --base ./node_modules/devoxx-2014-frontend --gruntfile ./node_modules/devoxx-2014-frontend/GruntFile.js dist",
-		"start": "node index.js",
+		"start": "grunt server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "contributors": [
@@ -19,12 +16,30 @@
     ],
     "dependencies": {
 		"express": "3.5.0",
-		"devoxx-2014-frontend": "https://github.com/ObjetDirect/devoxx-2014-frontend/tarball/master",
-		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend/tarball/master"
+		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend/tarball/master",
+
+        "grunt": "~0.4.1",
+        "grunt-cli": "~0.1.9",
+
+        "bower": "~1.2.8",
+        "grunt-bower-task": "~0.3.4",
+
+        "grunt-contrib-less": "~0.9.0",
+        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-clean": "~0.4.1",
+        "grunt-contrib-htmlmin": "~0.1.3",
+        "grunt-contrib-imagemin": "~0.1.4",
+        "grunt-svgmin": "~0.2.0",
+        "grunt-manifest": "~0.4.0",
+        "grunt-combine": "~0.8.3",
+        "uglify-js": "~2.3.6",
+        "grunt-contrib-uglify": "~0.3.2",
+        "grunt-strip": "~0.2.1",
+
+        "grunt-shell": "~0.6.4"
 	},
 	"devDependencies": {
-		"grunt": "~0.4.1",
-        "grunt-cli": "~0.1.9"
 	},
     "license": "private",
     "engines": {

@@ -1,0 +1,31 @@
+{
+    "name": "devoxx-2014",
+    "description": "Application for Devoxx 2014",
+    "version": "0.0.1",
+    "main": "index.js",
+    "private": true,
+    "license": "private",
+    "dependencies": {
+        "devoxx-2014-frontend": "https://github.com/ObjetDirect/devoxx-2014-frontend/tarball/master"
+    },
+    "ignore": [
+        "bower_components",
+        "node_modules",
+        "test",
+        ".*",
+        "README*",
+        "bower.json",
+        "Gruntfile.js",
+        "package.json"
+    ],
+    "exportsOverride": {
+        "devoxx-2014-frontend": {
+            "js": "src/**/*"
+        },
+        "*": {
+            "js": "**/*.js",
+            "css": "**/*.min.css",
+            "css/icons": "**/icons/**/*"
+        }
+    }
+}

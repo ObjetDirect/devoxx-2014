@@ -43,7 +43,17 @@ var
      * Server port
      * @type {number}
      */
-    port = process.env.PORT || 9000;
+    port = process.env.PORT || 9000,
+
+    /**
+     * Command line arguments
+     * @type Array<string>
+     */
+    args = process.argv.slice(2);
+
+if (args && args.length > 0) {
+    port = parseInt(args[0], 10);
+}
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Add some mime-types
@@ -66,7 +76,7 @@ express.static.mime.define(
 console.log('Initialization of the server (with right configurations and middlewares)');
 app.configure(function () {
     configurator(app);
-	app.use(express.static(__dirname + '/node_modules/devoxx-2014-frontend/target/compiled-webapp'));
+	app.use(express.static(__dirname + '/target/webapp'));
 });
 
 // ---------------------------------------------------------------------------------------------------------------------
