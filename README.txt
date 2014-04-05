@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------------------------------------
 What do you need ?
 * Install NodeJs: http://nodejs.org/
+* Install MongoDB: https://www.mongodb.org/downloads (read http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/)
 * Install Git: https://code.google.com/p/msysgit/ or http://git-scm.com/download/win
 * Install PhantomJs: http://phantomjs.org/
 * Install Chrome: http://www.google.fr/intl/fr/chrome/browser/
@@ -8,6 +9,7 @@ What do you need ?
 
 Next, put into the system PATH:
 * NodeJs bin
+* MongoDB bin
 * Git bin
 * SVN bin
 
@@ -31,6 +33,11 @@ npm set strict-ssl false
 For Bower, put into the PATH the variable "HTTP_PROXY"
 HTTP_PROXY http://proxy.company.com:8080
 HTTPS_PROXY http://proxy.company.com:8080
+
+--------------------------------------------------------------------------------------------------------------
+If you want to start MongoDb, type:
+> mongod --dbpath "./mongodbdata"
+
 
 --------------------------------------------------------------------------------------------------------------
 After that, open a shell prompt, go to the current directory and type the following commands

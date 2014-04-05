@@ -22,6 +22,12 @@ var
     express = require('express'),
 
     /**
+     * Mongoose library
+     * @type {Mongoose}
+     */
+    mongoose = require('mongoose'),
+
+    /**
      * Express application instance
      * @type {express}
      */
@@ -72,20 +78,28 @@ express.static.mime.define(
 );
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Classical configuration
-console.log('Initialization of the server (with right configurations and middlewares)');
-app.configure(function () {
-    configurator(app);
-	app.use(express.static(__dirname + '/target/webapp'));
+// MongoDB connection
+console.log('Connection to mongoDB');
+
+mongoose.connect('mongodb://localhost/devoxx-2014');
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connection.once('open', function callback() {
+    // -----------------------------------------------------------------------------------------------------------------
+	// Classical configuration
+	console.log('Initialization of the server (with right configurations and middlewares)');
+	app.configure(function () {
+		configurator(app);
+		app.use(express.static(__dirname + '/target/webapp'));
+	});
+
+    // -----------------------------------------------------------------------------------------------------------------
+	// REST api definition
+	console.log('Start to initialize our REST api');
+	userRestApi(app);
+
+    // -----------------------------------------------------------------------------------------------------------------
+	// And finally, run the server
+	app.listen(port);
+
+	console.log('Server started on port ' + port);
 });
-
-// ---------------------------------------------------------------------------------------------------------------------
-// REST api definition
-console.log('Start to initialize our REST api');
-userRestApi(app);
-
-// ---------------------------------------------------------------------------------------------------------------------
-// And finally, run the server
-app.listen(port);
-
-console.log('Server started on port ' + port);

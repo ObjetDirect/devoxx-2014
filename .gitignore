@@ -2,3 +2,9 @@
 /node_modules
 /bower_components
 /target
+
+/mongodbdata/devoxx-2014.0
+/mongodbdata/devoxx-2014.1
+/mongodbdata/devoxx-2014.ns
+/mongodbdata/local.0
+/mongodbdata/local.ns
