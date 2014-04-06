@@ -44,13 +44,11 @@ After that, open a shell prompt, go to the current directory and type the follow
 > npm install
     -> We will install required NodeJs main and development plugins
 
+> bower install
+    -> download all required dependencies
 
 > grunt default
     -> If 'Logging some stuff...' appears, the install seems good
-
-> grunt dependencies
-    -> download all required dependencies for the application
-    -> we can do too: > grunt dependencies:install
 
 
 --------------------------------------------------------------------------------------------------------------
