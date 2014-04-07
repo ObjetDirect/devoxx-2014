@@ -9,86 +9,55 @@ var casper = require('casper').create({
 
 casper.test.begin('Checking navigation to dashboard and KPI values', 1, function (test) {
 
-    casper.start('http://localhost:9000/devoxx-214/index.html', function () {
+    casper.start('http://localhost:9000/index.html', function () {
         this.echo('Loaded');
     });
 
-    casper.waitForUrl(/#login/, function () {
-        this.echo('Login required');
+    casper.waitForUrl(/#\/users/, function () {
+        this.echo('Users');
+    });
+
+    casper.thenClick('a[href="#/users/1/read"]', function () {
+        this.echo('Clicked on detail for first user')
+    });
+
+    casper.waitForUrl(/#\/users\/1/, function () {
+        this.echo('User 1 displayed');
     });
 
     casper.then(function () {
-        this.fill('form#login-form', {
-            'login': 'wsall',
-            'password': 'test'
-        }, false);
-    });
-
-    casper.thenClick('button[type="submit"]', function () {
-        this.echo('Clicked on submit button')
-    });
-
-    casper.waitForUrl(/#home/, function () {
-        this.echo('Redirect to home');
-    });
-
-    casper.waitFor(function check() {
-        return this.evaluate(function () {
-            return document.querySelectorAll('#home-page').length > 0;
+        this.echo('Evaluating coverage');
+        var covData = this.evaluate(function() {
+            return JSON.stringify(window.__coverage__);
         });
-    }, function then() {
-        this.capture('home.png');
-    });
-
-    casper.thenClick('#go-dashboard', function () {
-        this.echo('Clicked on dashboard button')
-    });
-
-    casper.waitForUrl(/#dashboard/, function () {
-        this.echo('Accessing dashboard');
-        this.capture('dashboard.png');
-    });
-
-    casper.waitFor(function check() {
-        return this.evaluate(function () {
-            return document.querySelectorAll('#supervision>ul>li [class=tdb-kpi-cont] > span').length === 3;
-        });
-    });
-
-    casper.waitFor(function check() {
-        return this.evaluate(function () {
-            return (document.querySelectorAll('#ticketing>ul>li [class=tdb-kpi-cont] > span').length === 3)
-                && (document.querySelector('#ticketing>ul>li [class=tdb-kpi-cont] > span')[0] !== '<i class="fa fa-spinner fa-spin"></i>')
-                && (document.querySelector('#ticketing>ul>li [class=tdb-kpi-cont] > span')[1] !== '<i class="fa fa-spinner fa-spin"></i>')
-                && (document.querySelector('#ticketing>ul>li [class=tdb-kpi-cont] > span')[2] !== '<i class="fa fa-spinner fa-spin"></i>');
-        });
-    });
-
-    casper.then(function () {
-        test.assertEval(function () {
-            var kpiSupervision = document.querySelectorAll('#supervision>ul>li .tdb-kpi-cont > span');
-            return kpiSupervision[0].innerText === '3+' && kpiSupervision[1].innerText === '121' && kpiSupervision[2].innerText === '';
-        }, 'Checking dashboard supervision KPI');
-
-        test.assertEval(function () {
-            var nbSupervision = document.querySelectorAll('#supervision>ul>li .tdb-icon-and-nb .tdb-nb');
-            return nbSupervision[0].innerText === '10' && nbSupervision[1].innerText === '145' && nbSupervision[2].innerText === '15';
-        }, 'Checking dashboard supervision nb');
-
-        test.assertEval(function () {
-            var kpiTicketing = document.querySelectorAll('#ticketing>ul>li .tdb-kpi-cont > span');
-            return kpiTicketing[0].innerText === '3+' && kpiTicketing[1].innerText === '' && kpiTicketing[2].innerText === '121';
-        }, 'Checking dashboard ticketing KPI');
-
-        test.assertEval(function () {
-            var kpiTicketing = document.querySelectorAll('#ticketing>ul>li .tdb-icon-and-nb .tdb-nb');
-            return kpiTicketing[0].innerText === '10' && kpiTicketing[1].innerText === '786' && kpiTicketing[2].innerText === '145';
-        }, 'Checking dashboard ticketing KPI');
-
-        this.capture('dashboard-kpi.png');
+        this.echo(covData);
     });
 
     casper.run();
 
+});
+
+casper.test.on("exit", function() {
+    this.echo('Exiting');
+    var covData = this.evaluate(function() {
+        return JSON.stringify(window.__coverage__);
+    });
+    this.echo(covData);
+    var options = {
+        port: 9000,
+        host: "localhost",
+        path: "/coverage/client",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    var req = http.request(options, function (res) {
+        console.log("\nFinished sending coverage data.");
+        done();
+        casper.exit();
+    });
+    req.write(covData);
+    req.end();
 });
 

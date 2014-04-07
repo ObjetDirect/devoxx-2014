@@ -6,7 +6,7 @@
 	"main": "index.js",
     "scripts": {
 		"start": "grunt server",
-        "test": "process.env.COVERAGE = true && node index.js; /Users/FDU3285/Development/casperjs/bin/casperjs test --post=./tests/post-test.js ./tests/navigationScenario.js  --xunit=./reports/tests-result.xml && exit 1"
+        "test": "node index.js & /Users/FDU3285/Development/casperjs/bin/casperjs test --auto-exit=no ./tests/navigationScenario.js  --xunit=./reports/tests-result.xml && exit 1"
     },
     "contributors": [
         {
@@ -16,6 +16,7 @@
     ],
     "dependencies": {
 		"express": "3.5.0",
+        "istanbul-middleware": "0.1.1",
         "mongoose": "3.8.8",
 		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend/tarball/master",
 
