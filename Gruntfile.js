@@ -45,7 +45,8 @@ module.exports = function (grunt) {
                 'config': {
                     'src' : [
                         'config/*.js*',
-                        'bower_components/devoxx-2014-frontend/config/*.js*'
+                        'bower_components/devoxx-2014-frontend/config/clean.js',
+                        'bower_components/devoxx-2014-frontend/config/dist.js'
                     ]
                 }
             }
