@@ -3,7 +3,7 @@
 
 
 // Shell configuration
-module.exports = function(){
+module.exports = function(grunt){
     'use strict';
 
     grunt.loadNpmTasks('grunt-shell');

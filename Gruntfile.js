@@ -8,7 +8,6 @@
  *  - grunt dependencies
  *  - grunt server
  */
-var path = require('path');
 
 module.exports = function (grunt) {
     'use strict';

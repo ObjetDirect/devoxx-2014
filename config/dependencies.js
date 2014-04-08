@@ -4,7 +4,7 @@
 var path = require('path');
 
 // Dependencies configuration
-module.exports = function(){
+module.exports = function(grunt){
     'use strict';
 
     grunt.loadNpmTasks('grunt-bower-task');
