@@ -6,6 +6,7 @@ var casper = require('casper').create({
     verbose: true,
     viewportSize: {width: 360, height: 600}
 });
+var http = require('http');
 
 casper.test.begin('Checking navigation to dashboard and KPI values', 1, function (test) {
 

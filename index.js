@@ -24,10 +24,10 @@ var isCoverageEnabled = (process.env.COVERAGE == "true"),
 if (isCoverageEnabled) {
     console.log('Hook loader for coverage - ensure this is not production!');
     console.log('Adding hook for ' + __dirname + '/node_modules/devoxx-2014-backend/rest');
-    console.log('Adding hook for ' + __dirname + '/node_modules/devoxx-2014-frontend/target/compiled-webapp');
+    console.log('Adding hook for ' + __dirname + '/bower_components/devoxx-2014-frontend/');
     im.hookLoader(__dirname + '/node_modules/devoxx-2014');
     im.hookLoader(__dirname + '/node_modules/devoxx-2014-backend');
-    im.hookLoader(__dirname + '/node_modules/devoxx-2014-frontend/target/compiled-webapp');
+    im.hookLoader(__dirname + '/bower_components/devoxx-2014-frontend/');
     // cover all files except under node_modules
     // see API for other options
 }
