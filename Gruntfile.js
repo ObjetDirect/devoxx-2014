@@ -15,6 +15,7 @@ module.exports = function (grunt) {
     // Define some global variables:
     var srcFolderPath = './bower_components/devoxx-2014-frontend/src',
         targetFolderPath = './target',
+        testFolderPath = './tests',
         tempWebAppBuildPath = targetFolderPath + '/webapp';
 
     // Grunt configuration
@@ -24,6 +25,7 @@ module.exports = function (grunt) {
             {
                 'srcFolderPath': srcFolderPath,
                 'targetFolderPath': targetFolderPath,
+                'testFolderPath': testFolderPath,
                 'tempWebAppBuildPath': tempWebAppBuildPath,
                 'dirname': __dirname,
                 'config': {
@@ -100,4 +102,13 @@ module.exports = function (grunt) {
             ]);
         }
     });
+
+    // Task for the dependencies
+    grunt.registerTask('tests', 'Run the Devoxx 2014 application tests', function () {
+        grunt.task.run([
+            'clean:ihmtests','express:ihmtests','casper:test'
+        ]);
+    });
+
+
 };

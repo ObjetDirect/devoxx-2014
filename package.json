@@ -6,7 +6,7 @@
 	"main": "index.js",
     "scripts": {
 		"start": "grunt server",
-        "test": "node index.js & /Users/FDU3285/Development/casperjs/bin/casperjs test --auto-exit=no ./tests/navigationScenario.js  --xunit=./reports/tests-result.xml && exit 1"
+        "test": "/Users/FDU3285/Development/casperjs/bin/casperjs  --xunit=./reports/tests-result.xml test --auto-exit=no ./tests/navigationScenario.js"
     },
     "contributors": [
         {
@@ -40,6 +40,8 @@
         "grunt-strip": "~0.2.1",
 
         "grunt-shell": "~0.6.4",
+        "grunt-casper": "~0.3.5",
+        "grunt-express": "~1.2.1",
 
         "load-grunt-configs": "~0.3.4"
 	},
