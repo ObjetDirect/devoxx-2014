@@ -12,7 +12,7 @@
 (function (casper) {
     'use strict';
 
-    casper.test.begin('Check navigation', 10, function suite(test) {
+    casper.test.begin('Check navigation', 2, function suite(test) {
         casper.start();
 
         // Default route

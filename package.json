@@ -5,8 +5,7 @@
     "private": true,
 	"main": "index.js",
     "scripts": {
-		"start": "grunt server",
-        "test": "/Users/FDU3285/Development/casperjs/bin/casperjs  --xunit=./reports/tests-result.xml test --auto-exit=no ./tests/navigationScenario.js"
+		"start": "grunt server"
     },
     "contributors": [
         {
@@ -16,7 +15,6 @@
     ],
     "dependencies": {
 		"express": "3.5.0",
-        "istanbul-middleware": "0.1.1",
         "mongoose": "3.8.8",
 		"devoxx-2014-backend": "https://github.com/ObjetDirect/devoxx-2014-backend/tarball/master",
 
