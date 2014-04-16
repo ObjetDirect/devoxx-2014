@@ -52,13 +52,25 @@ var
     port = process.env.PORT || 9000,
 
     /**
+     * The server is launched from the grunt express plugin ?
+     * @type {boolean}
+     */
+    fromExpressGrunt = false,
+
+    /**
      * Command line arguments
      * @type Array<string>
      */
     args = process.argv.slice(2);
 
 if (args && args.length > 0) {
-    port = parseInt(args[0], 10);
+    if (isNaN(parseInt(args[0], 10))) {
+        fromExpressGrunt = true;
+
+    } else {
+        port = parseInt(args[0], 10);
+    }
+
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -99,7 +111,13 @@ mongoose.connection.once('open', function callback() {
 
     // -----------------------------------------------------------------------------------------------------------------
 	// And finally, run the server
-	app.listen(port);
-	console.log('Server started on port ' + port);
+    if (!fromExpressGrunt) {
+        app.listen(port);
+        console.log('Server started on port ' + port);
+    }
 });
-module.exports = app;
+
+if (fromExpressGrunt) {
+    module.exports = app;
+    console.log('Server started !');
+}
